@@ -6,7 +6,7 @@ const accountData = {
     "ifsc": "SBIN0040039"
   },
   "fixedDeposit": {
-    "fdNumber": "FD20251009",
+    "fdNumber": "44513163502",
     "principal": 1000000,
     "interestRate": 8.2,
     "startDate": "2025-10-01",
