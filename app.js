@@ -9,20 +9,20 @@ const accountData = {
     "fdNumber": "44513163502",
     "principal": 1000000,
     "interestRate": 8.2,
-    "startDate": "2025-10-01",
-    "maturityDate": "2026-10-01",
+    "startDate": "2025-09-30",
+    "maturityDate": "2026-12-18",
     "totalAnnualInterest": 7900,
     "savingsSchemeDeduction": 3200,
     "monthlyInterestCredit": 4700
   },
   "interestCredit": {
-    "nextCreditDate": "2025-11-03",
+    "nextCreditDate": "2025-10-30",
     "monthlyAmount": 4700,
     "frequency": "Monthly"
   },
   "activity": [
     {
-      "date": "2025-10-02",
+      "date": "2025-09-30",
       "desc": "FD Opened",
       "amount": 1000000,
       "balance": 1000000
@@ -30,7 +30,7 @@ const accountData = {
   ],
   "notifications": [
     "Monthly interest of ₹4,700 will be credited on 03 NOV 2025.",
-    "Your FD is maturing on 02 OCT 2026.",
+    "Your FD is maturing on 12 Dec 2026.",
     "Savings scheme deduction: ₹3,200 from total annual interest."
   ]
 };
