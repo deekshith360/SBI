@@ -26,6 +26,20 @@ const accountData = {
       "desc": "FD Opened",
       "amount": 1000000,
       "balance": 1000000
+    },
+    {
+      "date": "2025-10-30",
+      "desc": "Interest Credited (1st Month)",
+      "amount": 7900,
+      "balance": 1007900,
+      "type": "credit"
+    },
+    {
+      "date": "2025-10-30",
+      "desc": "Savings Scheme Addition (1st Month)",
+      "amount": 3200,
+      "balance": 1011100,
+      "type": "credit"
     }
   ],
   "notifications": [
@@ -443,6 +457,118 @@ function highlightInterestFeatures() {
 }
 
 // Event listeners
+
+// Popup notification system
+function showPopupNotification() {
+  // Create popup overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'popup-overlay';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+  `;
+
+  // Create popup container
+  const popup = document.createElement('div');
+  popup.style.cssText = `
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+    position: relative;
+  `;
+
+  popup.innerHTML = `
+    <div style="text-align: center; color: white;">
+      <div style="font-size: 64px; margin-bottom: 16px;">🎉</div>
+      <h2 style="margin: 0 0 16px 0; font-size: 28px; font-weight: 600; color: white;">
+        First Month Interest Credited!
+      </h2>
+      <div style="background: rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 20px; margin: 20px 0;">
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 14px; opacity: 0.9; margin-bottom: 4px;">Interest Credited</div>
+          <div style="font-size: 32px; font-weight: 700;">₹7,900</div>
+        </div>
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 16px;">
+          <div style="font-size: 14px; opacity: 0.9; margin-bottom: 4px;">Savings Scheme Addition</div>
+          <div style="font-size: 32px; font-weight: 700;">₹3,200</div>
+        </div>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 12px; margin-top: 20px;">
+        <div style="font-size: 13px; opacity: 0.95;">
+          📅 Date: <strong>30 October 2025</strong>
+        </div>
+        <div style="font-size: 13px; opacity: 0.95; margin-top: 8px;">
+          💰 New Balance: <strong>₹10,11,100</strong>
+        </div>
+      </div>
+      <button id="close-popup" style="
+        margin-top: 24px;
+        background: white;
+        color: #059669;
+        border: none;
+        padding: 12px 32px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        Got it! ✓
+      </button>
+    </div>
+  `;
+
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+
+  // Add animations
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Close popup handler
+  const closePopup = () => {
+    overlay.style.animation = 'fadeOut 0.3s ease';
+    setTimeout(() => {
+      document.body.removeChild(overlay);
+    }, 300);
+  };
+
+  document.getElementById('close-popup').addEventListener('click', closePopup);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      closePopup();
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initializeApp();
   
